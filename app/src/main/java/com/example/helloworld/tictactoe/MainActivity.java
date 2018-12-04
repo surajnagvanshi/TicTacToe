@@ -5,6 +5,7 @@ import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 //                    Toast.makeText(this,e.getMessage(), Toast.LENGTH_LONG).show();
@@ -79,14 +80,31 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void restart(){
-        int images[]=new int[]{R.id.imageView1,R.id.imageView2,R.id.imageView3,R.id.imageView4,R.id.imageView5,R.id.imageView6,R.id.imageView7,R.id.imageView8,R.id.imageView9};
+
+        for(int temp=0;temp<9;temp++)
+            aChar[temp] = (char) temp;
+
+        LinearLayout vertical=findViewById(R.id.verticalLine);
+        LinearLayout horizontal1=findViewById(R.id.horizontalLine1);
+        LinearLayout horizontal2=findViewById(R.id.horizontalLine2);
+        LinearLayout horizontal3=findViewById(R.id.horizontalLine3);
+        for(int i=0;i<vertical.getChildCount();i++){
+            LinearLayout horizontal=((LinearLayout)vertical.getChildAt(i));
+            for (int j=0;j<vertical.getChildCount();j++){
+                ((ImageView)horizontal.getChildAt(j)).setImageResource(R.drawable.ic_launcher_background);
+            }
+        }
+
+        /*int images[]=new int[]{R.id.imageView1,R.id.imageView2,R.id.imageView3,R.id.imageView4,R.id.imageView5,R.id.imageView6,R.id.imageView7,R.id.imageView8,R.id.imageView9};
         for(int temp=0;temp<9;temp++) {
             aChar[temp] = (char) temp;
             ImageView imageView=findViewById(images[temp]);
             imageView.setImageResource(R.drawable.ic_launcher_background);
-            playerTurn=1;
-            isWaiting=false;
-        }
+
+        }*/
+        
+        playerTurn=1;
+        isWaiting=false;
     }
 
     @Override
